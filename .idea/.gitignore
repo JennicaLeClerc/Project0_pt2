@@ -2,4 +2,5 @@
 /shelf/
 /workspace.xml
 /target/
-/idea/
+/.idea/
+/.DS_store
