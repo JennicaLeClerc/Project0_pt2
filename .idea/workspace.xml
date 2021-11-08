@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b90b9a21-177b-4243-9e3d-58ed8fd34b47" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../Project0.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/service/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/service/MenuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +44,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
