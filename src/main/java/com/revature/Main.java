@@ -1,16 +1,12 @@
 package com.revature;
 
-import com.revature.model.BankingTypes;
 import com.revature.model.User;
+import com.revature.persistence.UserDao;
 import com.revature.service.MenuService;
 import com.revature.service.UserService;
 
-import com.revature.model.Users;
-import com.revature.service.Project0Service;
-
 //import java.util.LinkedList;
 import java.util.Scanner;
-import java.util.List;
 
 
 public class Main {

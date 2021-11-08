@@ -2,7 +2,6 @@ package com.revature.service;
 
 import com.revature.model.BankingTypes;
 import com.revature.util.ConnectionSingleton;
-import com.revature.model.Users;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -10,12 +9,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Project0Service {
 
     public List<BankingTypes> getAllBankingTypes() {
-        String sql = "select * from \"BankingTypes\"";
+        String sql = "select * from banking_types";
         List<BankingTypes> bankingtypeslist = new ArrayList<>();
 
         try(Connection connection = ConnectionSingleton.getInstance()){

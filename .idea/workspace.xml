@@ -5,12 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b90b9a21-177b-4243-9e3d-58ed8fd34b47" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/BankingTypesDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/Dao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Project0.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/service/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/service/MenuService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/model/AbstractUser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/model/Users.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/service/Project0Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/service/Project0Service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/util/ConnectionSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/util/ConnectionSingleton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +25,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
