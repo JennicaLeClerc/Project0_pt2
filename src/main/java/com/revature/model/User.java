@@ -5,27 +5,27 @@ import java.io.Serializable;
 public class User implements Serializable {
     private int accountNo;
     private String username;
-    private String pincode;
+    private String password;
     private double checkingBalance;
     private double savingsBalance;
 
     public User(){}
 
-    public User(String username, String pincode){
+    public User(String username, String password){
         this.username = username;
-        this.pincode = pincode;
+        this.password = password;
     }
 
-    public User(int accountNo, String username, String pincode){
+    public User(int accountNo, String username, String password){
         this.accountNo = accountNo;
         this.username = username;
-        this.pincode = pincode;
+        this.password = password;
     }
 
-    public User(int accountNo, String username, String pincode, double checkingBalance, double savingsBalance){
+    public User(int accountNo, String username, String password, double checkingBalance, double savingsBalance){
         this.accountNo = accountNo;
         this.username = username;
-        this.pincode = pincode;
+        this.password = password;
         this.checkingBalance = checkingBalance;
         this.savingsBalance = savingsBalance;
     }
@@ -46,12 +46,12 @@ public class User implements Serializable {
         this.username = username;
     }
 
-    public String getPincode() {
-        return pincode;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPincode(String pincode) {
-        this.pincode = pincode;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public double getCheckingBalance() {
@@ -77,7 +77,7 @@ public class User implements Serializable {
         return "User{" +
                 "accountNo=" + accountNo +
                 ", username='" + username + '\'' +
-                ", pin='" + pincode + '\'' +
+                ", password='" + password + '\'' +
                 ", checkingBalance=' $'" + /*checking*/ checkingBalance +
                 ", savingsBalance=' $'" + /*savings*/ savingsBalance +
                 '}';

@@ -12,26 +12,46 @@ public class UserDao implements Dao<User>{
 
     @Override
     public void create(User user) {
-        String sql = "insert into user(account_no, username, pincode, checking_balance, savings_balance) values(?,?,?,?,?)";
+        String sql = "insert into users(account_no, username, password, checking_balance, savings_balance) values(?,?,?,?,?)";
 
         try(Connection connection = ConnectionSingleton.getInstance()){
             assert connection != null;
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, user.getAccountNo());
             stmt.setString(2, user.getUsername());
-            stmt.setString(3, user.getPincode());
+            stmt.setString(3, user.getPassword());
             stmt.setDouble(4, user.getCheckingBalance());
             stmt.setDouble(5, user.getSavingsBalance());
 
             stmt.executeUpdate();
         }catch (Exception e){
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
+    /*@Override
+    public void create(User user) {
+        String sql = "insert into user(username,password,checking_balance,savings_balance) values(?,?,?,?)";
+
+        try{
+            Connection connection1 = ConnectionSingleton.getInstance();
+            assert connection1 != null;
+            PreparedStatement stmt = connection1.prepareStatement(sql);
+            //stmt.setInt(1, user.getAccountNo());
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
+            stmt.setDouble(3, user.getCheckingBalance());
+            stmt.setDouble(4, user.getSavingsBalance());
+
+            stmt.executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }*/
+
     @Override
     public User getByID(int id) {
-        String sql = "select * from user where account_no=?";
+        String sql = "select * from users where account_no=?";
         User user = null;
         try(Connection connection = ConnectionSingleton.getInstance()){
             assert connection != null;
@@ -44,7 +64,7 @@ public class UserDao implements Dao<User>{
                 user = new User();
                 user.setAccountNo(rs.getInt(1));
                 user.setUsername(rs.getString(2));
-                user.setPincode(rs.getString(3));
+                user.setPassword(rs.getString(3));
                 user.setCheckingBalance(rs.getDouble(4));
                 user.setSavingsBalance(rs.getDouble(5));
             }
@@ -55,7 +75,7 @@ public class UserDao implements Dao<User>{
     }
 
     public User getByUsername(String username){
-        String sql = "select * from user where username=?";
+        String sql = "select * from users where username=?";
         User user = null;
         try(Connection connection = ConnectionSingleton.getInstance()){
             assert connection != null;
@@ -68,7 +88,7 @@ public class UserDao implements Dao<User>{
                 user = new User();
                 user.setAccountNo(rs.getInt(1));
                 user.setUsername(rs.getString(2));
-                user.setPincode(rs.getString(3));
+                user.setPassword(rs.getString(3));
                 user.setCheckingBalance(rs.getDouble(4));
                 user.setSavingsBalance(rs.getDouble(5));
             }
@@ -85,13 +105,13 @@ public class UserDao implements Dao<User>{
 
     @Override
     public boolean update(User user) {
-        String sql = "update users set username=?, pincode=? where account_no=?";
+        String sql = "update users set username=?, password=? where account_no=?";
 
         try(Connection connection = ConnectionSingleton.getInstance()){
             assert connection != null;
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getPincode());
+            stmt.setString(2, user.getPassword());
             stmt.setInt(3, user.getAccountNo());
 //            if (stmt.executeUpdate() != 0) {
 //                return true;

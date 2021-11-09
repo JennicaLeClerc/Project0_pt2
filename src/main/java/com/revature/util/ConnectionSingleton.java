@@ -16,8 +16,8 @@ public class ConnectionSingleton {
 
     private ConnectionSingleton(){}
 
-    public static Connection getInstance(){
-        if(instance == null){
+    public static Connection getInstance() throws SQLException {
+        if(instance == null || instance.isClosed()){
             try {
                 Class.forName("org.postgresql.Driver");
 

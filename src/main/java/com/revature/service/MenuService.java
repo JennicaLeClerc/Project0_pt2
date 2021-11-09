@@ -87,7 +87,7 @@ public class MenuService {
      */
     public void depositMenuPrompt(){
         System.out.println("\n--- Deposit Balance ---");
-        withdrawMenuOptions();
+        depositMenuOptions();
     }
 
     /**
@@ -106,7 +106,7 @@ public class MenuService {
      */
     public void transferFromMenuPrompt(){
         System.out.println("\n--- Transfer Balance ---");
-        withdrawMenuOptions();
+        transferFromMenuOptions();
     }
 
     /**
@@ -173,9 +173,9 @@ public class MenuService {
         System.out.println("Please enter your Username: ");
     }
 
-    // Prompts the user for their Pin
-    public void enterPinPrompt(){
-        System.out.println("Please enter your Pin: ");
+    // Prompts the user for their Password
+    public void enterPasswordPrompt(){
+        System.out.println("Please enter your Password: ");
     }
 
     // Prompts user for their First Name
@@ -233,9 +233,9 @@ public class MenuService {
         System.out.println("\nYour Username must be at least 5 characters and no more than 10.");
     }
 
-    // Lets the user know that the pin must be 4 DIGITS long
-    public void pinLengthPrint(){
-        System.out.println("\nYour Pin must be 4 digits.");
+    // Lets the user know that the password must be longer than 8 characters
+    public void passwordLengthPrint(){
+        System.out.println("\nYour Pin must be longer than 8 characters.");
     }
 
     // Lets the user know the Account prompt they chose doesn't exist
