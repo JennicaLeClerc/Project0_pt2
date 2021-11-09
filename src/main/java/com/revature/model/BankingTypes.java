@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class BankingTypes implements Serializable {
-
     private int bankingTypeID;
     private String bankingTypeName;
+
+    public BankingTypes(){}
 
     public BankingTypes(int bankingTypeID, String bankingTypeName) {
         this.bankingTypeID = bankingTypeID;

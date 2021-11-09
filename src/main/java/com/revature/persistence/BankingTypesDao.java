@@ -17,10 +17,10 @@ public class BankingTypesDao implements Dao<BankingTypes>{
         try(Connection connection = ConnectionSingleton.getInstance()){
             assert connection != null;
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, bankingTypes.getBankingTypeID());
+            stmt.setInt(1, bankingTypes.getBankingTypeID());
             stmt.setString(2, bankingTypes.getBankingTypeName());
 
-            stmt.executeQuery();
+            stmt.executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

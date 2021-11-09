@@ -1,17 +1,11 @@
 package com.revature;
 
-import com.revature.model.User;
-import com.revature.persistence.UserDao;
 import com.revature.service.MenuService;
 import com.revature.service.UserService;
 
-//import java.util.LinkedList;
 import java.util.Scanner;
 
-
 public class Main {
-
-    User currentUser;
     UserService userService;
     MenuService menuService;
     Scanner scanner;
@@ -45,7 +39,7 @@ public class Main {
      * Create a new user:   Has the user enter all that is necessary to create an account and then logs them in.
      * Log In:              Has the User enter their username and Password. Sends that user to the Log In Menu
      *                      If the user is back to this method after logging in then they have asked to Log Out,
-     *                      so the user tempuser is set to null so that while loop runs again.
+     *                      so the user is set to null so that while loop runs again.
      * Exit:                Lets the User know they are closing the program, then exits the program
      */
     public void mainMenu(){
@@ -56,15 +50,13 @@ public class Main {
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    User newuser = userService.createUser();
-                    driver.LogInMenu(newuser);
+                    userService.createUser();
+                    driver.LogInMenu();
                     break;
                 case "2": {
-                    User tempUser = userService.Login();
-                    if (tempUser != null) {
-                        currentUser = tempUser;
-                        driver.LogInMenu(tempUser);
-                        tempUser = null;
+                    userService.Login();
+                    if (userService.getCurrentUser() != null) {
+                        driver.LogInMenu();
                     }
                     break;
                 }
@@ -90,10 +82,10 @@ public class Main {
      *                      from their accounts.
      * Transfer Balance:    Allows the user to go to the Transfer Balances Menu where the user can transfer money
      *                      between their accounts.
-     * Sign Out:            Sends the user back to the Main Menu, then sets the tempuser to null escentially logging
+     * Sign Out:            Sends the user back to the Main Menu, then sets the user to null essentially logging
      *                      out the user.
      */
-    public void LogInMenu( User user ){
+    public void LogInMenu( ){
         Main driver = new Main();
         menuService.logInMenuPrompt();
 
@@ -101,19 +93,19 @@ public class Main {
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    driver.CheckBalanceMenu(user);
+                    driver.CheckBalanceMenu();
                     break;
                 case "2":
-                    driver.WithdrawMenu(user);
+                    driver.WithdrawMenu();
                     break;
                 case "3":
-                    driver.DepositMenu(user);
+                    driver.DepositMenu();
                     break;
                 case "4":
-                    driver.TransferMenu(user);
+                    driver.TransferMenu();
                     break;
                 case "0":
-                    menuService.logoutText();
+                    userService.Logout();
                     return;
                 default:
                     menuService.incorrectMenuSelection();
@@ -129,20 +121,20 @@ public class Main {
      * Savings Balances:    Prints out the current balance from the user's savings account.
      * Back:                Takes the user back to the Log In Menu.
      */
-    public void CheckBalanceMenu( User user ){
+    public void CheckBalanceMenu(){
         menuService.checkBalanceMenuPrompt();
         while(true){
             String choice = scanner.nextLine();
 
             switch (choice) {
                 case "1":
-                    userService.ViewBalance(user);
+                    userService.ViewBalance("All");
                     break;
                 case "2":
-                    userService.ViewBalance(user, "Checking");
+                    userService.ViewBalance("Checking");
                     break;
                 case "3":
-                    userService.ViewBalance(user, "Savings");
+                    userService.ViewBalance("Savings");
                     break;
                 case "0":
                     return;
@@ -160,16 +152,16 @@ public class Main {
      * Savings:     Lets the user withdraw money from their Savings Account.
      * Back:        Takes the user back to the Log In Menu.
      */
-    public void WithdrawMenu( User user ){
+    public void WithdrawMenu(){
         menuService.withdrawMenuPrompt();
         while(true){
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    userService.Withdraw(user, "Checking");
+                    userService.Withdraw("Checking");
                     break;
                 case "2":
-                    userService.Withdraw(user, "Savings");
+                    userService.Withdraw("Savings");
                     break;
                 case "0":
                     return;
@@ -187,16 +179,16 @@ public class Main {
      * Savings:     Lets the user deposit money from their Savings Account.
      * Back:        Takes the user back to the Log In Menu.
      */
-    public void DepositMenu( User user ){
+    public void DepositMenu(){
         menuService.depositMenuPrompt();
         while(true){
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    userService.Deposit(user, "Checking");
+                    userService.Deposit("Checking");
                     break;
                 case "2":
-                    userService.Deposit(user, "Savings");
+                    userService.Deposit("Savings");
                     break;
                 case "0":
                     return;
@@ -214,16 +206,16 @@ public class Main {
      * Savings:     Lets the user withdraw money from their Savings Account to their Checking Account.
      * Back:        Takes the user back to the Log In Menu.
      */
-    public void TransferMenu( User user ){
+    public void TransferMenu(){
         menuService.transferFromMenuPrompt();
         while(true){
             String choice = scanner.nextLine();
             switch (choice) {
                 case "1":
-                    userService.TransferFrom(user, "Checking");
+                    userService.TransferFrom("Checking");
                     break;
                 case "2":
-                    userService.TransferFrom(user, "Savings");
+                    userService.TransferFrom("Savings");
                     break;
                 case "0":
                     return;

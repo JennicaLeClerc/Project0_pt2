@@ -3,15 +3,30 @@ package com.revature.model;
 import java.io.Serializable;
 
 public class Person implements Serializable {
-
     private int personID;
     private String firstName;
     private String lastName;
+
+    private int accoutNo;
+
+    public Person(){}
+
+    public Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
 
     public Person(int personID, String firstName, String lastName) {
         this.personID = personID;
         this.firstName = firstName;
         this.lastName = lastName;
+    }
+
+    public Person(int personID, String firstName, String lastName, int accoutNo) {
+        this.personID = personID;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.accoutNo = accoutNo;
     }
 
     public int getPersonID() {
@@ -36,6 +51,14 @@ public class Person implements Serializable {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public int getAccoutNo() {
+        return accoutNo;
+    }
+
+    public void setAccoutNo(int accoutNo) {
+        this.accoutNo = accoutNo;
     }
 
     @Override

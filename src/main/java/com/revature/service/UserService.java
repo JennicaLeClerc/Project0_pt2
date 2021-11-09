@@ -1,35 +1,45 @@
 package com.revature.service;
 
-import com.revature.model.User;
+import com.revature.model.*;
+import com.revature.persistence.*;
+
 import java.util.*;
 
 public class UserService {
-    Scanner scanner;
-    MenuService menuService;
+    private User currentUser;
+    private Person currentPerson;
+    private final UserDao userDao;
+    private final PersonDao personDao;
+    private final Scanner scanner;
+    private final MenuService menuService;
 
     public UserService(Scanner scanner, MenuService menuService){
         this.scanner = scanner;
         this.menuService = menuService;
+        this.userDao = new UserDao();
+        this.personDao = new PersonDao();
     }
-
-    List<String> usernameList = new ArrayList<>();
-    List<User> userpinList = new ArrayList<>();
 
     private static int current_account_num = 1110; // The number has to have these modifiers for the incrementation to work
 
     /**
      * Creates a user with First Name, Last Name, Username, Pincode, Account No., Checking Balance, Savings Balance.
      */
-    public User createUser(){
+    public void createUser(){
         String[] names = Name();
         String[] credentials = UsernameAndPinCreater();
         int account_number = Account_Number();
         double[] balances = InitialBalances();
 
-        userpinList.add( new User(credentials[0], credentials[1])) ;
-        User newuser = new User(account_number, credentials[0], credentials[1], names[0], names[1], balances[0], balances[1]);
+        currentPerson = new Person(names[0], names[1]);
+        currentUser = new User(account_number, credentials[0], credentials[1], balances[0], balances[1]);
+
+        personDao.create(currentPerson);
+        userDao.create(currentUser);
+
+        currentPerson.setAccoutNo(currentUser.getAccountNo());
+
         menuService.accountCreatedPrint();
-        return newuser;
     }
 
     /**
@@ -37,20 +47,35 @@ public class UserService {
      * exists and if it does, checks to see if the pin is correct for that user. If the username and password is
      * correct it returns the user. If not it returns that it is invalid.
     */
-     public User Login(){
+    public void Login(){
         String[] credentials = UsernameAndPinInput();
 
-        for(User user: userpinList){
-            String tempUsername = user.getUsername();
-            if(tempUsername.equals(credentials[0])){
-                if(user.getPincode().equals(credentials[1])){
-                    menuService.loginText();
-                    return user;
-                }
+        User user = userDao.getByUsername(credentials[0]);
+        if(user != null){
+            if(user.getPincode().equals(credentials[1])){
+                menuService.loginText();
+                currentUser = user;
             }
         }
         menuService.notValidUsernamePin();
-        return null;
+    }
+
+    /**
+     * If you are logging out. The current user stored in runtime should be set to null so that the next user can be
+     * logged in.
+     */
+    public void Logout(){
+        currentUser = null;
+        currentPerson = null;
+        menuService.logoutText();
+    }
+
+    public User getCurrentUser(){
+        return currentUser;
+    }
+
+    public Person getCurrentPerson(){
+        return currentPerson;
     }
 
     /**
@@ -107,7 +132,7 @@ public class UserService {
     }
 
     /**
-     * Has the user create a Username where the length has to be between 5 and 10 characters. Returns the Username.
+     * Has the user create a Username where the length has to be over 5 characters long. Returns the Username.
      */
     public String UserName(){
         boolean isnewuser;
@@ -119,10 +144,9 @@ public class UserService {
                 username = scanner.nextLine();
                 isnewuser = GoodUserName( username );
             }
-            while( username == null || username.length() > 10 || username.length() < 5);
+            while( username == null || username.length() < 5);
         }
         while( !isnewuser );
-        usernameList.add(username);
         return username;
     }
 
@@ -130,15 +154,8 @@ public class UserService {
      * Checks if the chosen Username is already in use. Returns true if unique Username. Returns false if Username
      * is already in use.
      */
-    public boolean GoodUserName( String username ){
-        boolean isgood = true;
-        for( String i : usernameList){
-            if( i.equals( username ) ){
-                menuService.invalidUsername();
-                isgood = false;
-            }
-        }
-        return isgood;
+    private boolean GoodUserName( String username ){
+        return userDao.getByUsername(username) == null;
     }
 
     /**
@@ -179,32 +196,32 @@ public class UserService {
      * If you don't have enough funds in that account, you are shown your balances. If you do have enough fund,
      * that Amount is Withdrawn from the selected Account Type.
      */
-    public void Withdraw( User user, String account, double amount ) {
-        //menuService.printWithdrawAcc(account); // I think only Transfer From method is using this one anymore
+    public void Withdraw(String account, double amount ) {
+        User user = getCurrentUser();
         switch (account) {
             case "Checking":
-                if (user.getChecking_balance() < amount) {
+                if (user.getCheckingBalance() < amount) {
                     menuService.invalidFunds();
-                    ViewBalance(user);
+                    ViewBalance();
                     break;
                 } else {
-                    user.setChecking_balance(user.getChecking_balance() - amount);
-                    ViewBalance(user, account);
+                    user.setCheckingBalance(user.getCheckingBalance() - amount);
+                    ViewBalance(account);
                 }
                 break;
             case "Savings":
-                if (user.getSavings_balance() < amount) {
+                if (user.getSavingsBalance() < amount) {
                     menuService.invalidFunds();
-                    ViewBalance(user);
+                    ViewBalance();
                     break;
                 } else {
-                    user.setSavings_balance(user.getSavings_balance() - amount);
-                    ViewBalance(user, account);
+                    user.setSavingsBalance(user.getSavingsBalance() - amount);
+                    ViewBalance(account);
                 }
                 break;
             default:
                 menuService.invalidAccountPrint();
-                ViewBalance(user);
+                ViewBalance();
                 break;
         }
     }
@@ -213,7 +230,8 @@ public class UserService {
      * Overloading Withdraw Method. Does the same as above but specifically asks the User how much they want to
      * withdraw. If the amount was returned null they wanted exit withdraw screen, so exits to Withdraw Menu Page.
      */
-    public void Withdraw( User user, String account) {
+    public void Withdraw(String account) {
+        User user = getCurrentUser();
         menuService.printWithdrawAcc(account);
         double amount = AmountWithdraw();
         if (amount == Double.parseDouble(null)){
@@ -222,28 +240,28 @@ public class UserService {
 
         switch (account) {
             case "Checking":
-                if (user.getChecking_balance() < amount) {
+                if (user.getCheckingBalance() < amount) {
                     menuService.invalidFunds();
-                    ViewBalance(user);
+                    ViewBalance();
                     break;
                 } else {
-                    user.setChecking_balance(user.getChecking_balance() - amount);
-                    ViewBalance(user, account);
+                    user.setCheckingBalance(user.getCheckingBalance() - amount);
+                    ViewBalance(account);
                 }
                 break;
             case "Savings":
-                if (user.getSavings_balance() < amount) {
+                if (user.getSavingsBalance() < amount) {
                     menuService.invalidFunds();
-                    ViewBalance(user);
+                    ViewBalance();
                     break;
                 } else {
-                    user.setSavings_balance(user.getSavings_balance() - amount);
-                    ViewBalance(user, account);
+                    user.setSavingsBalance(user.getSavingsBalance() - amount);
+                    ViewBalance(account);
                 }
                 break;
             default:
                 menuService.invalidAccountPrint();
-                ViewBalance(user);
+                ViewBalance();
                 break;
         }
     }
@@ -267,28 +285,27 @@ public class UserService {
             }
         }
         while( amount > 0 & amount%20 != 0 );
-        double Amount = amount;
-        return Amount;
+        return amount;
     }
 
     /**
      * Adds the amount the user wants to Deposit to their desired Account Type (Checking or Savings). Then prints out
      * the users current balance.
      */
-    public void Deposit( User user, String account, double amount){
-        // menuService.printDepositAcc( account ); // I think the only method using this method anymore is Transfer From
+    public void Deposit( String account, double amount){
+        User user = getCurrentUser();
         switch ( account ){
             case "Checking":
-                user.setChecking_balance(user.getChecking_balance() + amount);
+                user.setCheckingBalance(user.getCheckingBalance() + amount);
                 break;
             case "Savings":
-                user.setSavings_balance(user.getSavings_balance() + amount);
+                user.setSavingsBalance(user.getSavingsBalance() + amount);
                 break;
             default:
                 menuService.invalidAccountPrint();
                 break;
         }
-        ViewBalance( user,account );
+        ViewBalance(account);
     }
 
     /**
@@ -296,7 +313,8 @@ public class UserService {
      * Deposit to your desired Account Type (Checking or Savings). Then prints out the users current balance. If the
      * Amount was returned null the user wanted exit deposit screen, so exits to Deposit Menu Page.
      */
-    public void Deposit( User user, String account){
+    public void Deposit( String account){
+        User user = getCurrentUser();
         menuService.printDepositAcc( account );
         double amount = AmountDeposit();
         if (amount == Double.parseDouble(null)){
@@ -305,16 +323,16 @@ public class UserService {
 
         switch ( account ){
             case "Checking":
-                user.setChecking_balance(user.getChecking_balance() + amount);
+                user.setCheckingBalance(user.getCheckingBalance() + amount);
                 break;
             case "Savings":
-                user.setSavings_balance(user.getSavings_balance() + amount);
+                user.setSavingsBalance(user.getSavingsBalance() + amount);
                 break;
             default:
                 menuService.invalidAccountPrint();
                 break;
         }
-        ViewBalance( user,account );
+        ViewBalance(account);
     }
 
     /**
@@ -344,25 +362,26 @@ public class UserService {
      * during Withdraw changes. Since if it doesn't change then the Amount either was 0 or too much to Withdraw.
      * If it passes this test, then it Deposits those funds to the Chosen Account.
      */
-    public void TransferFrom( User user, String account, double amount ){
-        double tempamount = 0;
+    public void TransferFrom( String account, double amount ){
+        User user = getCurrentUser();
+        double tempamount;
         switch ( account ){
             case "Checking":
-                tempamount = user.getChecking_balance();
+                tempamount = user.getCheckingBalance();
                 menuService.printTransferFromAcc( "Checking" );
-                Withdraw(user, "Checking", amount);
-                if( tempamount != user.getChecking_balance() ){
+                Withdraw( "Checking", amount);
+                if( tempamount != user.getCheckingBalance() ){
                     menuService.printTransferToAcc( "Savings" );
-                    Deposit(user, "Savings", amount);
+                    Deposit( "Savings", amount);
                 }
                 break;
             case "Savings":
-                tempamount = user.getSavings_balance();
+                tempamount = user.getSavingsBalance();
                 menuService.printTransferFromAcc( "Savings" );
-                Withdraw(user, "Savings", amount);
-                if( tempamount != user.getSavings_balance() ){
+                Withdraw( "Savings", amount);
+                if( tempamount != user.getSavingsBalance() ){
                     menuService.printTransferToAcc( "Checking" );
-                    Deposit(user, "Checking", amount);
+                    Deposit( "Checking", amount);
                 }
                 break;
             default:
@@ -377,30 +396,31 @@ public class UserService {
      * to their other account. Then prints out the users current balances. If the Amount was returned null the user
      * wanted exit deposit screen, so exits to Transfer Menu Page.
      */
-    public void TransferFrom( User user, String account){
+    public void TransferFrom( String account){
+        User user = getCurrentUser();
         double amount = AmountTransferFrom();
         if (amount == Double.parseDouble(null)){
             return;
         }
 
-        double tempamount = 0;
+        double tempamount;
         switch ( account ){
             case "Checking":
-                tempamount = user.getChecking_balance();
+                tempamount = user.getCheckingBalance();
                 menuService.printTransferFromAcc( "Checking" );
-                Withdraw(user, "Checking", amount);
-                if( tempamount != user.getChecking_balance() ){
+                Withdraw("Checking", amount);
+                if( tempamount != user.getCheckingBalance() ){
                     menuService.printTransferToAcc( "Savings" );
-                    Deposit(user, "Savings", amount);
+                    Deposit( "Savings", amount);
                 }
                 break;
             case "Savings":
-                tempamount = user.getSavings_balance();
+                tempamount = user.getSavingsBalance();
                 menuService.printTransferFromAcc( "Savings" );
-                Withdraw(user, "Savings", amount);
-                if( tempamount != user.getSavings_balance() ){
+                Withdraw( "Savings", amount);
+                if( tempamount != user.getSavingsBalance() ){
                     menuService.printTransferToAcc( "Checking" );
-                    Deposit(user, "Checking", amount);
+                    Deposit( "Checking", amount);
                 }
                 break;
             default:
@@ -435,16 +455,17 @@ public class UserService {
      * Takes in a User and an Account Type (Checking or Savings or All) and prints out the balance(s) for those chosen.
      * Tells you the Account Doesn't Exist if invalid account given.
      */
-    public void ViewBalance( User user, String account ) {
+    public void ViewBalance( String account ) {
+        User user = getCurrentUser();
         switch( account ) {
             case "Checking":
-                menuService.printCheckingBalance(user.getChecking_balance());
+                menuService.printCheckingBalance(user.getCheckingBalance());
                 break;
             case "Savings":
-                menuService.printSavingsBalance(user.getSavings_balance());
+                menuService.printSavingsBalance(user.getSavingsBalance());
                 break;
             case "All":
-                ViewBalance( user );
+                ViewBalance();
                 break;
             default:
                 menuService.invalidAccountPrint();
@@ -455,7 +476,8 @@ public class UserService {
     /**
      * Takes in a User and prints out the balances for both Checking and Savings
      */
-    public void ViewBalance( User user ){
-        menuService.printBalances( user.getChecking_balance(), user.getSavings_balance() );
+    public void ViewBalance(){
+        User user = getCurrentUser();
+        menuService.printBalances( user.getCheckingBalance(), user.getSavingsBalance() );
     }
 }
