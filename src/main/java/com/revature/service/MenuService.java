@@ -121,15 +121,24 @@ public class MenuService {
         System.out.println("    0) Back");
     }
 
+    /**
+     * Provides the user with the Account Services Menu Screen, which includes the Account Services Menu Options.
+     */
     public void  accountServicesMenuPrompt(){
         System.out.println("\n--- Account Services ---");
         accountServicesMenuOptions();
     }
 
+    /**
+     * Provides Account Services Menu Options to the user to prompt them to choose if the user want to Change their
+     * Username or Password, Add a Person their Account, or View all Transactions. The user can also choose to go
+     * back to the Log In Menu.
+     */
     public void accountServicesMenuOptions(){
         System.out.println("1) Change Username");
         System.out.println("2) Change Password");
         System.out.println("3) Add Person to Account");
+        System.out.println("4) View All Transactions");
         System.out.println("0) Back");
     }
 
@@ -196,6 +205,11 @@ public class MenuService {
     // Text letting the user know that they successfully added a person to their account
     public void successfulPersonAdded(String fname, String lname){
         System.out.println(fname + " " + lname + " added to account.");
+    }
+
+    // Text letting the user know that they are going to be shown all their transactions.
+    public void allTransactionsPrint(String username){
+        System.out.println("All transactions for " + username);
     }
 
     /**

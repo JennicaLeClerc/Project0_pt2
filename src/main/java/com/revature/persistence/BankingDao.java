@@ -4,7 +4,6 @@ import com.revature.model.Banking;
 import com.revature.util.ConnectionSingleton;
 
 import java.sql.*;
-import java.util.List;
 
 public class BankingDao implements Dao<Banking>{
 

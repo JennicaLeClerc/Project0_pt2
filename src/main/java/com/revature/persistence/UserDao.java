@@ -1,6 +1,6 @@
 package com.revature.persistence;
 
-import com.revature.model.User;
+import com.revature.model.*;
 import com.revature.util.ConnectionSingleton;
 
 import java.sql.Connection;
@@ -51,6 +51,47 @@ public class UserDao implements Dao<User>{
             System.out.println(e.getMessage());
         }
         return user;
+    }
+
+    public void printAllTransactions(User user){
+        String sql = "select * from transaction where account_no=?";
+
+        Banking banking;
+        try(Connection connection = ConnectionSingleton.getInstance()){
+            assert connection != null;
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, user.getAccountNo());
+
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                int temp_transactionID = rs.getInt(2);
+                String sql_ID = "select * from banking where transaction_id =?";
+                try(Connection connection_ID = ConnectionSingleton.getInstance()) {
+                    assert connection != null;
+                    PreparedStatement stmt_ID = connection.prepareStatement(sql_ID);
+                    stmt_ID.setInt(1, temp_transactionID);
+
+                    ResultSet rs_ID = stmt_ID.executeQuery();
+
+                    if(rs_ID.next()){
+                        banking = new Banking();
+                        banking.setTransactionID(rs.getInt(1));
+                        banking.setInvoiceDate(rs.getDate(2));
+                        banking.setAmount(rs.getDouble(3));
+                        banking.setBankingTypeID(rs.getInt(4));
+                        banking.setAccountTypeID(rs.getInt(5));
+
+                        System.out.println(banking);
+                    }
+
+                }catch(Exception e){
+                    System.out.println(e.getMessage());
+                }
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public User getByUsername(String username){

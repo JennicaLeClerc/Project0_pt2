@@ -3,11 +3,9 @@ package com.revature.persistence;
 import com.revature.model.AccountTypes;
 import com.revature.util.ConnectionSingleton;
 
-import javax.security.auth.login.AccountException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
 
 public class AccountTypesDao implements Dao<AccountTypes>{
 

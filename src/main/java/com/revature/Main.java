@@ -227,6 +227,7 @@ public class Main {
      * Change Username:         Lets the user change their Username.
      * Change Password:         Lets the user change their Password.
      * Add Person to Account:   Lets the user add another person to their account.
+     * View All Transactions:   Lets the user view all their accounts transactions.
      * Back:                    Takes the user back to the Log In Menu.
      */
     public void AccountServicesMenu(){
@@ -241,7 +242,10 @@ public class Main {
                     userService.ChangePassword();
                     break;
                 case "3":
-                    userService.newPerson();
+                    userService.NewPerson();
+                    break;
+                case "4":
+                    userService.AllTransactions();
                     break;
                 case "0":
                     return;

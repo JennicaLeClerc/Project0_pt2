@@ -662,11 +662,20 @@ public class UserService {
     /**
      * Allows the user to add a person to their account.
      */
-    public void newPerson(){
+    public void NewPerson(){
         menuService.newPersonText();
         String[] name = Name();
         currentPerson = new Person(name[0], name[1], currentUser.getAccountNo());
         personDao.create(currentPerson);
         menuService.successfulPersonAdded(currentPerson.getFirstName(), currentPerson.getLastName());
+    }
+
+    /**
+     * Allows the user to see all their account's transactions.
+     */
+    public void AllTransactions(){
+        menuService.allTransactionsPrint(currentUser.getUsername());
+        System.out.println("Bad value for type timestamp/date/time");
+        //userDao.printAllTransactions(currentUser);
     }
 }

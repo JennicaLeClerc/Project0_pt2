@@ -6,13 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="b90b9a21-177b-4243-9e3d-58ed8fd34b47" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../Project0.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/model/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/AccountTypesDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/AccountTypesDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/BankingDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/BankingDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/BankingTypesDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/BankingTypesDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/Dao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/PersonDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/PersonDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/service/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/service/MenuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/service/UserService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

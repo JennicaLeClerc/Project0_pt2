@@ -1,7 +1,7 @@
 package com.revature.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 
 public class Banking implements Serializable {
     private int transactionID;

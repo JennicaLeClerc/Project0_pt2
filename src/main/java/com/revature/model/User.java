@@ -72,14 +72,12 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        //String checking = String.format("%.2f", checkingBalance));
-        //String savings = String.format("%.2f", savingsBalance))
         return "User{" +
                 "accountNo=" + accountNo +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", checkingBalance=' $'" + /*checking*/ checkingBalance +
-                ", savingsBalance=' $'" + /*savings*/ savingsBalance +
+                ", checkingBalance=' $'" + String.format("%.2f", checkingBalance) +
+                ", savingsBalance=' $'" + String.format("%.2f", savingsBalance) +
                 '}';
     }
 }
