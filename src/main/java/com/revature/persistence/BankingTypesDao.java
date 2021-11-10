@@ -70,11 +70,6 @@ public class BankingTypesDao implements Dao<BankingTypes>{
     }
 
     @Override
-    public List<BankingTypes> getAll() {
-        return null;
-    }
-
-    @Override
     public boolean update(BankingTypes bankingTypes) {
         String sql = "update banking_types set banking_type_name=? where banking_type_id=?";
 

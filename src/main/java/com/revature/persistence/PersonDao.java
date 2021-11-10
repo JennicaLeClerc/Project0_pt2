@@ -81,11 +81,6 @@ public class PersonDao implements Dao<Person>{
     }
 
     @Override
-    public List<Person> getAll() {
-        return null;
-    }
-
-    @Override
     public boolean update(Person person) {
         String sql = "update person set first_name=?, last_name=? where person_id=?";
 

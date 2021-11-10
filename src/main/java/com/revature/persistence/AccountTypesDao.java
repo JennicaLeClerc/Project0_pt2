@@ -71,11 +71,6 @@ public class AccountTypesDao implements Dao<AccountTypes>{
     }
 
     @Override
-    public List<AccountTypes> getAll() {
-        return null;
-    }
-
-    @Override
     public boolean update(AccountTypes accountTypes) {
         String sql = "update account_types set account_type_name=? where account_type_id=?";
 

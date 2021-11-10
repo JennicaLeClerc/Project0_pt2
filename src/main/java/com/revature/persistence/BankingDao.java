@@ -84,11 +84,6 @@ public class BankingDao implements Dao<Banking>{
     }
 
     @Override
-    public List<Banking> getAll() {
-        return null;
-    }
-
-    @Override
     public boolean update(Banking banking) {
         String sql = "update banking set invoice_date=?, amount=?, banking_type_id=?, account_type_id=? where transaction_id=?";
         java.util.Date utilDate = new java.util.Date();

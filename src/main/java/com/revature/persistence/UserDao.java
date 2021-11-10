@@ -6,7 +6,6 @@ import com.revature.util.ConnectionSingleton;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.List;
 
 public class UserDao implements Dao<User>{
 
@@ -76,11 +75,6 @@ public class UserDao implements Dao<User>{
             System.out.println(e.getMessage());
         }
         return user;
-    }
-
-    @Override
-    public List<User> getAll() {
-        return null;
     }
 
     @Override
