@@ -165,6 +165,16 @@ public class MenuService {
         System.out.println("Transferring funds to " + account );
     }
 
+    // Text letting the user know that they are logged in.
+    public void loginText( String username ){
+        System.out.println("Welecome " + username + "! You are now Logged In.");
+    }
+
+    // Text letting the user know that they are logged out.
+    public void logoutText( String username ){
+        System.out.println("Logging " + username + " out.");
+    }
+
     /**
      *      One Line Prompts
      */
@@ -188,25 +198,24 @@ public class MenuService {
         System.out.println("Enter Last Name: ");
     }
 
-    // Prompts user to enter the amount they want to Withdraw. Lets the user know that it must be in increments
-    // $20 and that they can exit back to Withdraw Menu.
+    // Prompts user to enter the amount they want to Withdraw. Lets the user know that they can exit back to
+    // Withdraw Menu.
     public void enterAmountWithdrawPrompt(){
-        System.out.println("To Exit back to Withdraw Menu type in any letter");
-        System.out.println("Amount must me in increments of $20");
+        System.out.println("To Exit back to Withdraw Menu type 0");
         System.out.println("Withdraw Amount: ");
     }
 
-    // Prompts the user to enter the amount they want to Deposit. Lets the user know how to exit back to the Deposit
-    // Menu.
+    // Prompts the user to enter the amount they want to Deposit. Lets the user know how to exit back to the
+    // Deposit Menu.
     public void enterAmountDepositPrompt(){
-        System.out.println("To Exit back to Deposit menu type in any letter");
+        System.out.println("To Exit back to Deposit menu type in 0");
         System.out.println("Deposit Amount: ");
     }
 
     // Prompts the user to enter the amount they want to Transfer From. Lets the user know how to exit back to the
     // Transfer Menu.
     public void enterAmountTransferFromPrompt(){
-        System.out.println("To Exit back to Transfer menu type in any letter");
+        System.out.println("To Exit back to Transfer menu type in 0");
         System.out.println("Transfer Amount: ");
     }
 
@@ -219,8 +228,8 @@ public class MenuService {
     }
 
     // Tells not valid username or password in bold
-    public void notValidUsernamePin(){
-        System.out.println("\033[1mInvalid Username or Pin\033[0m");
+    public void notValidUsernamePassword(){
+        System.out.println("\033[1mInvalid Username or Password\033[0m");
     }
 
     // Lets the user know their account was created
@@ -230,12 +239,12 @@ public class MenuService {
 
     // Lets the user know the length restrictions of the Username
     public void usernameLengthPrint(){
-        System.out.println("\nYour Username must be at least 5 characters and no more than 10.");
+        System.out.println("\nYour Username must be at least 5 characters.");
     }
 
     // Lets the user know that the password must be longer than 8 characters
     public void passwordLengthPrint(){
-        System.out.println("\nYour Pin must be longer than 8 characters.");
+        System.out.println("\nYour Password must be longer than 8 characters.");
     }
 
     // Lets the user know the Account prompt they chose doesn't exist
@@ -258,17 +267,7 @@ public class MenuService {
         System.out.println("You did not enter a number. Please try again.");
     }
 
-    // Text letting you know that you are logged in.
-    public void loginText(){
-        System.out.println("You are now Logged In.");
-    }
-
-    // Text letting you know that you are logged out.
-    public void logoutText(){
-        System.out.println("You are now Logged Out.");
-    }
-
-    // Text letting you know that the program is closing.
+    // Text letting the user know that the program is closing.
     public void textClosing(){
         System.out.println("Closing Program");
     }

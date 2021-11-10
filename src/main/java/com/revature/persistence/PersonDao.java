@@ -25,7 +25,7 @@ public class PersonDao implements Dao<Person>{
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        Link(person.getAccoutNo(), getLastPersonID());
+        Link(person.getAccountNo(), getLastPersonID());
     }
 
     public int getLastPersonID(){

@@ -7,7 +7,7 @@ public class Person implements Serializable {
     private String firstName;
     private String lastName;
 
-    private int accoutNo;
+    private int accountNo;
 
     public Person(){}
 
@@ -22,11 +22,11 @@ public class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    public Person(int personID, String firstName, String lastName, int accoutNo) {
+    public Person(int personID, String firstName, String lastName, int accountNo) {
         this.personID = personID;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.accoutNo = accoutNo;
+        this.accountNo = accountNo;
     }
 
     public int getPersonID() {
@@ -53,12 +53,12 @@ public class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    public int getAccoutNo() {
-        return accoutNo;
+    public int getAccountNo() {
+        return accountNo;
     }
 
-    public void setAccoutNo(int accoutNo) {
-        this.accoutNo = accoutNo;
+    public void setAccountNo(int accountNo) {
+        this.accountNo = accountNo;
     }
 
     @Override

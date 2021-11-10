@@ -9,6 +9,7 @@ public class Main {
     UserService userService;
     MenuService menuService;
     Scanner scanner;
+    private static Main driver = new Main();
 
     /**
      * Is a driver that allows all that call this method to use these.
@@ -23,13 +24,6 @@ public class Main {
      * The main function. Creates a driver from Main(). Calls the mainMenu method.
      */
     public static void main(String[] args) {
-
-        /*Project0Service service = new Project0Service();
-        List<BankingTypes> bankingtypeslist = service.getAllBankingTypes();
-
-        System.out.println(bankingtypeslist);*/
-
-        Main driver = new Main();
         driver.mainMenu();
     }
 
@@ -43,9 +37,7 @@ public class Main {
      * Exit:                Lets the User know they are closing the program, then exits the program
      */
     public void mainMenu(){
-        Main driver = new Main();
         menuService.mainMenuPrompt();
-
         while (true) {
             String choice = scanner.nextLine();
             switch (choice) {
@@ -77,7 +69,7 @@ public class Main {
      * Check Balance:       Allows the user to go to the Check Balances Menu where the user can check the balances
      *                      of all accounts.
      * Withdraw Balance:    Allows the user to go to the Withdraw Balances Menu where the user can withdraw money
-     *                      in increments of $20 from their accounts
+     *                      from their accounts.
      * Deposit Balance:     Allows the user to go to the Deposit Balances Menu where the user can deposit money
      *                      from their accounts.
      * Transfer Balance:    Allows the user to go to the Transfer Balances Menu where the user can transfer money
@@ -86,9 +78,7 @@ public class Main {
      *                      out the user.
      */
     public void LogInMenu( ){
-        Main driver = new Main();
         menuService.logInMenuPrompt();
-
         while (true){
             String choice = scanner.nextLine();
             switch (choice) {

@@ -29,26 +29,6 @@ public class UserDao implements Dao<User>{
         }
     }
 
-    /*@Override
-    public void create(User user) {
-        String sql = "insert into user(username,password,checking_balance,savings_balance) values(?,?,?,?)";
-
-        try{
-            Connection connection1 = ConnectionSingleton.getInstance();
-            assert connection1 != null;
-            PreparedStatement stmt = connection1.prepareStatement(sql);
-            //stmt.setInt(1, user.getAccountNo());
-            stmt.setString(1, user.getUsername());
-            stmt.setString(2, user.getPassword());
-            stmt.setDouble(3, user.getCheckingBalance());
-            stmt.setDouble(4, user.getSavingsBalance());
-
-            stmt.executeUpdate();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-    }*/
-
     @Override
     public User getByID(int id) {
         String sql = "select * from users where account_no=?";

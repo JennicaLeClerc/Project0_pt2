@@ -3,32 +3,45 @@ package com.revature.persistence;
 import com.revature.model.Banking;
 import com.revature.util.ConnectionSingleton;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.List;
 
 public class BankingDao implements Dao<Banking>{
 
     @Override
     public void create(Banking banking) {
-        String sql = "insert into banking(transaction_id, invoice_date, amount, banking_type_id, account_type_id) values(?,?,?,?,?)";
-
+        String sql = "insert into banking(invoice_date, amount, banking_type_id, account_type_id) values(?,?,?,?)";
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+        
         try(Connection connection = ConnectionSingleton.getInstance()){
             assert connection != null;
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, banking.getTransactionID());
-            stmt.setDate(2, (Date) banking.getInvoiceDate());
-            stmt.setDouble(3, banking.getAmount());
-            stmt.setInt(4, banking.getBankingTypeID());
-            stmt.setInt(5, banking.getAccountTypeID());
+            stmt.setDate(1, sqlDate);
+            stmt.setDouble(2, banking.getAmount());
+            stmt.setInt(3, banking.getBankingTypeID());
+            stmt.setInt(4, banking.getAccountTypeID());
 
             stmt.executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        Link(banking.getAccountNo(),banking.getTransactionID());
+        Link(banking.getAccountNo(),getLastTransactionID());
+    }
+
+    public int getLastTransactionID(){
+        String sql = "select * from banking order by transaction_id desc limit 1;";
+        try (Connection connection= ConnectionSingleton.getInstance()) {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            ResultSet resultSet = stmt.executeQuery();
+            if (resultSet.next()){
+                return resultSet.getInt(1);
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
     public void Link(int accountNo,int transactionID){
@@ -70,30 +83,6 @@ public class BankingDao implements Dao<Banking>{
         return banking;
     }
 
-    public Banking getByDate(Date date){
-        String sql = "select * from banking where invoice_date=?";
-        Banking banking = null;
-        try(Connection connection = ConnectionSingleton.getInstance()){
-            assert connection != null;
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setDate(1, date);
-
-            ResultSet rs = stmt.executeQuery();
-
-            if(rs.next()){
-                banking = new Banking();
-                banking.setTransactionID(rs.getInt(1));
-                banking.setInvoiceDate(rs.getDate(2));
-                banking.setAmount(rs.getDouble(3));
-                banking.setBankingTypeID(rs.getInt(4));
-                banking.setAccountTypeID(rs.getInt(5));
-            }
-        }catch(Exception e){
-            System.out.println(e.getMessage());
-        }
-        return banking;
-    }
-
     @Override
     public List<Banking> getAll() {
         return null;
@@ -102,11 +91,13 @@ public class BankingDao implements Dao<Banking>{
     @Override
     public boolean update(Banking banking) {
         String sql = "update banking set invoice_date=?, amount=?, banking_type_id=?, account_type_id=? where transaction_id=?";
+        java.util.Date utilDate = new java.util.Date();
+        java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
 
         try(Connection connection = ConnectionSingleton.getInstance()){
             assert connection != null;
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setDate(1, (Date) banking.getInvoiceDate());
+            stmt.setDate(1, sqlDate);
             stmt.setDouble(2, banking.getAmount());
             stmt.setInt(3, banking.getBankingTypeID());
             stmt.setInt(4, banking.getAccountTypeID());

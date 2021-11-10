@@ -14,8 +14,7 @@ public class Banking implements Serializable {
 
     public Banking(){}
 
-    public Banking(int transactionID, Date invoiceDate, double amount, int bankingTypeID, int accountTypeID) {
-        this.transactionID = transactionID;
+    public Banking(Date invoiceDate, double amount, int bankingTypeID, int accountTypeID) {
         this.invoiceDate = invoiceDate;
         this.amount = amount;
         this.bankingTypeID = bankingTypeID;
