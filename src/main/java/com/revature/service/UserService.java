@@ -46,7 +46,7 @@ public class UserService {
     }
 
     /**
-     * Log in the user by having them input thier username and password. For each user in the database, checks if the
+     * Log in the user by having them input their username and password. For each user in the database, checks if the
      * username exists and if it does, checks to see if the password is correct for that user. If the username and
      * password is correct it returns the user. If not it returns that it is invalid.
     */
@@ -63,6 +63,9 @@ public class UserService {
                 menuService.notValidUsernamePassword();
             }
         }
+        else{
+            menuService.notValidUsernamePassword();
+        }
     }
 
     /**
@@ -76,7 +79,7 @@ public class UserService {
     }
 
     /**
-     * Asking for a non-empty First and Last Name from user then returns them.
+     * Asking for a non-empty First and Last Name from user, then returns them.
      */
     public String[] Name(){
         String fname;
@@ -98,7 +101,7 @@ public class UserService {
     }
 
     /**
-     * Gives the new user the next Account Number then returns the Account Number.
+     * Gives the new user the next Account Number, then returns the Account Number.
      */
     public int Account_Number(){
         current_account_num++;
@@ -107,7 +110,7 @@ public class UserService {
     }
 
     /**
-     * Creates a Username and Pincode string
+     * Creates a Username and Password string
      */
     public String[] UsernameAndPasswordCreater(){
         String username = UserName();
@@ -150,6 +153,33 @@ public class UserService {
     }
 
     /**
+     * Has the user create a unique Username where the length has to be over 5 characters long. If the user
+     * types in exit then their username doesn't change then they go back to the Account Services Menu.
+     * Returns the Username.
+     */
+    public String UpdateUserName(){
+        boolean isnewuser;
+        String username;
+        menuService.updateUsernameLengthPrint();
+        do{
+            do{
+                menuService.enterUsernamePrompt();
+                username = scanner.nextLine();
+                isnewuser = GoodUserName( username );
+                if(username.equals("exit")){
+                    return currentUser.getUsername();
+                }
+                if(!isnewuser){
+                    menuService.invalidUsername();
+                }
+            }
+            while( username == null || username.length() < 5);
+        }
+        while( !isnewuser );
+        return username;
+    }
+
+    /**
      * Checks if the chosen Username is already in use. Returns true if unique Username. Returns false if Username
      * is already in use.
      */
@@ -167,6 +197,26 @@ public class UserService {
         do{
             menuService.enterPasswordPrompt();
             password = scanner.nextLine();
+            numberOfDigits = password.length();
+        }
+        while( numberOfDigits <= 8 );
+        return password;
+    }
+
+    /**
+     * Has the user create a Password that is at least 8 characters long. If the user types in exit then their
+     * Password doesn't change then they go back to the Account Services Menu. Returns a String of the Password.
+     */
+    public String UpdatePassword(){
+        String password;
+        int numberOfDigits;
+        menuService.updatePasswordLengthPrint();
+        do{
+            menuService.enterPasswordPrompt();
+            password = scanner.nextLine();
+            if(password.equals("exit")){
+                return currentUser.getPassword();
+            }
             numberOfDigits = password.length();
         }
         while( numberOfDigits <= 8 );
@@ -302,7 +352,6 @@ public class UserService {
             }
             catch ( InputMismatchException e ){
                 menuService.invalidType();
-                scanner.nextLine();
                 return 0;
             }
         } while( amount <= 0 );
@@ -402,7 +451,6 @@ public class UserService {
             }
             catch ( InputMismatchException e ){
                 menuService.invalidType();
-                scanner.nextLine();
                 return 0;
             }
         } while( amount <= 0 );
@@ -521,7 +569,6 @@ public class UserService {
             }
             catch ( InputMismatchException e ){
                 menuService.invalidType();
-                scanner.nextLine();
                 return 0;
             }
         }
@@ -570,7 +617,8 @@ public class UserService {
     }
 
     /**
-     * Creates a bankingDao which then can be uploaded to the Database.
+     * Creates a bankingDao, having all the transaction information, which then can be uploaded to the Database.
+     * Also updates the user's balances.
      */
     public void LoadToDatabase(int accountNo, double amount, String bankingType, String accountType){
         Banking banking = new Banking();
@@ -590,5 +638,35 @@ public class UserService {
         }
 
         bankingDao.create(banking);
+        userDao.updateBalance(currentUser);
+    }
+
+    /**
+     * Allows the user to change their username.
+     */
+    public void ChangeUsername(){
+        currentUser.setUsername(UpdateUserName());
+        userDao.update(currentUser);
+        menuService.successfulUsernameChange(currentUser.getUsername());
+    }
+
+    /**
+     * Allows the user to change their password.
+     */
+    public void ChangePassword(){
+        currentUser.setPassword(UpdatePassword());
+        userDao.update(currentUser);
+        menuService.successfulPasswordChange();
+    }
+
+    /**
+     * Allows the user to add a person to their account.
+     */
+    public void newPerson(){
+        menuService.newPersonText();
+        String[] name = Name();
+        currentPerson = new Person(name[0], name[1], currentUser.getAccountNo());
+        personDao.create(currentPerson);
+        menuService.successfulPersonAdded(currentPerson.getFirstName(), currentPerson.getLastName());
     }
 }

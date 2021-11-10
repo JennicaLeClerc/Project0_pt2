@@ -16,10 +16,10 @@ public class Person implements Serializable {
         this.lastName = lastName;
     }
 
-    public Person(int personID, String firstName, String lastName) {
-        this.personID = personID;
+    public Person(String firstName, String lastName, int accountNo) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.accountNo = accountNo;
     }
 
     public Person(int personID, String firstName, String lastName, int accountNo) {

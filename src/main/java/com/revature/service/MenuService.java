@@ -40,6 +40,7 @@ public class MenuService {
         System.out.println("2) Withdraw Money");
         System.out.println("3) Deposit Money");
         System.out.println("4) Transfer Money");
+        System.out.println("5) Account Services");
         System.out.println("0) Sign Out");
     }
 
@@ -120,6 +121,18 @@ public class MenuService {
         System.out.println("    0) Back");
     }
 
+    public void  accountServicesMenuPrompt(){
+        System.out.println("\n--- Account Services ---");
+        accountServicesMenuOptions();
+    }
+
+    public void accountServicesMenuOptions(){
+        System.out.println("1) Change Username");
+        System.out.println("2) Change Password");
+        System.out.println("3) Add Person to Account");
+        System.out.println("0) Back");
+    }
+
     /**
      * Print Statements with inputs
      */
@@ -173,6 +186,16 @@ public class MenuService {
     // Text letting the user know that they are logged out.
     public void logoutText( String username ){
         System.out.println("Logging " + username + " out.");
+    }
+
+    // Text letting the user know that they successfully changed their username.
+    public void successfulUsernameChange(String username){
+        System.out.println("Username change to " + username);
+    }
+
+    // Text letting the user know that they successfully added a person to their account
+    public void successfulPersonAdded(String fname, String lname){
+        System.out.println(fname + " " + lname + " added to account.");
     }
 
     /**
@@ -242,9 +265,22 @@ public class MenuService {
         System.out.println("\nYour Username must be at least 5 characters.");
     }
 
+    // Lets the user know the length restrictions of the Username. Also let the user know they have to type exit to
+    // go back to the Login menu.
+    public void updateUsernameLengthPrint(){
+        System.out.println("\nYour Username must be at least 5 characters.");
+        System.out.println("Type exit to go back to Log In Menu.");
+    }
+
     // Lets the user know that the password must be longer than 8 characters
     public void passwordLengthPrint(){
         System.out.println("\nYour Password must be longer than 8 characters.");
+    }
+
+    // Lets the user know that the password must be longer than 8 characters
+    public void updatePasswordLengthPrint(){
+        System.out.println("\nYour Password must be longer than 8 characters.");
+        System.out.println("Type exit to go back to Log In Menu.");
     }
 
     // Lets the user know the Account prompt they chose doesn't exist
@@ -270,5 +306,15 @@ public class MenuService {
     // Text letting the user know that the program is closing.
     public void textClosing(){
         System.out.println("Closing Program");
+    }
+
+    // Text asking the user to enter the name of the new user.
+    public void newPersonText(){
+        System.out.println("Please enter the name of the new user on your account.");
+    }
+
+    // Text letting the user know that they successfully changed their username.
+    public void successfulPasswordChange(){
+        System.out.println("Password updated.");
     }
 }

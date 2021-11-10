@@ -74,6 +74,8 @@ public class Main {
      *                      from their accounts.
      * Transfer Balance:    Allows the user to go to the Transfer Balances Menu where the user can transfer money
      *                      between their accounts.
+     * Account Services:    Allows the user to go to the Account Services Menu where the user can changer their
+     *                      username or password or add another person to their account.
      * Sign Out:            Sends the user back to the Main Menu, then sets the user to null essentially logging
      *                      out the user.
      */
@@ -93,6 +95,9 @@ public class Main {
                     break;
                 case "4":
                     driver.TransferMenu();
+                    break;
+                case "5":
+                    driver.AccountServicesMenu();
                     break;
                 case "0":
                     userService.Logout();
@@ -212,6 +217,37 @@ public class Main {
                 default:
                     menuService.incorrectMenuSelection();
                     menuService.transferFromMenuOptions();
+            }
+        }
+    }
+
+    /**
+     * The Account Services Menu. Uses the user information to allow the logged in user to change their username or
+     * password and add another person to their account.
+     * Change Username:         Lets the user change their Username.
+     * Change Password:         Lets the user change their Password.
+     * Add Person to Account:   Lets the user add another person to their account.
+     * Back:                    Takes the user back to the Log In Menu.
+     */
+    public void AccountServicesMenu(){
+        menuService.accountServicesMenuPrompt();
+        while(true){
+            String choice = scanner.nextLine();
+            switch (choice) {
+                case "1":
+                    userService.ChangeUsername();
+                    break;
+                case "2":
+                    userService.ChangePassword();
+                    break;
+                case "3":
+                    userService.newPerson();
+                    break;
+                case "0":
+                    return;
+                default:
+                    menuService.incorrectMenuSelection();
+                    menuService.accountServicesMenuOptions();
             }
         }
     }

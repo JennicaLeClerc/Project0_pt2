@@ -87,11 +87,7 @@ public class UserDao implements Dao<User>{
             stmt.setString(1, user.getUsername());
             stmt.setString(2, user.getPassword());
             stmt.setInt(3, user.getAccountNo());
-//            if (stmt.executeUpdate() != 0) {
-//                return true;
-//            }
 
-            // shorthand combination returning a conditional operation
             return stmt.executeUpdate() != 0;
         }catch (Exception e){
             System.out.println(e.getMessage());

@@ -7,13 +7,23 @@
     <list default="true" id="b90b9a21-177b-4243-9e3d-58ed8fd34b47" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../Project0.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/AccountTypesDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/AccountTypesDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/BankingDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/BankingDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/BankingTypesDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/BankingTypesDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/Dao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/Dao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/PersonDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/PersonDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/model/Person.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/UserDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/service/MenuService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/service/MenuService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/model/Banking.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/model/Banking.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/model/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/model/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/persistence/AccountTypesDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/persistence/AccountTypesDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/persistence/BankingDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/persistence/BankingDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/persistence/BankingTypesDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/persistence/BankingTypesDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/persistence/Dao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/persistence/Dao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/persistence/PersonDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/persistence/PersonDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/persistence/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/persistence/UserDao.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/service/MenuService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/service/MenuService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/service/Project0Service.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/service/UserService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
