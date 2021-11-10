@@ -180,7 +180,7 @@ public class MenuService {
 
     // Text letting the user know that they are logged in.
     public void loginText( String username ){
-        System.out.println("Welecome " + username + "! You are now Logged In.");
+        System.out.println("Welcome " + username + "! You are now Logged In.");
     }
 
     // Text letting the user know that they are logged out.

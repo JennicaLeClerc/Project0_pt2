@@ -78,7 +78,7 @@ public class UserDao implements Dao<User>{
     }
 
     @Override
-    public boolean update(User user) {
+    public void update(User user) {
         String sql = "update users set username=?, password=? where account_no=?";
 
         try(Connection connection = ConnectionSingleton.getInstance()){
@@ -88,14 +88,13 @@ public class UserDao implements Dao<User>{
             stmt.setString(2, user.getPassword());
             stmt.setInt(3, user.getAccountNo());
 
-            return stmt.executeUpdate() != 0;
+            stmt.executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return false;
     }
 
-    public boolean updateBalance(User user){
+    public void updateBalance(User user){
         String sql = "update users set checking_balance=?, savings_balance=? where account_no=?";
 
         try(Connection connection = ConnectionSingleton.getInstance()){
@@ -105,15 +104,13 @@ public class UserDao implements Dao<User>{
             stmt.setDouble(2, user.getSavingsBalance());
             stmt.setInt(3, user.getAccountNo());
 
-            return stmt.executeUpdate() != 0;
+            stmt.executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return false;
     }
 
     @Override
-    public boolean deleteByID(int id) {
-        return false;
+    public void deleteByID(int id) {
     }
 }

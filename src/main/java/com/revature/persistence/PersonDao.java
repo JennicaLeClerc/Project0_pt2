@@ -81,7 +81,7 @@ public class PersonDao implements Dao<Person>{
     }
 
     @Override
-    public boolean update(Person person) {
+    public void update(Person person) {
         String sql = "update person set first_name=?, last_name=? where person_id=?";
 
         try(Connection connection = ConnectionSingleton.getInstance()){
@@ -90,15 +90,13 @@ public class PersonDao implements Dao<Person>{
             stmt.setString(1, person.getFirstName());
             stmt.setString(2, person.getLastName());
             stmt.setInt(3, person.getPersonID());
-            return stmt.executeUpdate() != 0;
+
+            stmt.executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return false;
     }
 
     @Override
-    public boolean deleteByID(int id) {
-        return false;
-    }
+    public void deleteByID(int id) {}
 }

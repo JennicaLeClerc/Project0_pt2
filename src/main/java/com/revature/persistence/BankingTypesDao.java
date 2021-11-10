@@ -70,7 +70,7 @@ public class BankingTypesDao implements Dao<BankingTypes>{
     }
 
     @Override
-    public boolean update(BankingTypes bankingTypes) {
+    public void update(BankingTypes bankingTypes) {
         String sql = "update banking_types set banking_type_name=? where banking_type_id=?";
 
         try(Connection connection = ConnectionSingleton.getInstance()){
@@ -79,15 +79,12 @@ public class BankingTypesDao implements Dao<BankingTypes>{
             stmt.setString(1, bankingTypes.getBankingTypeName());
             stmt.setInt(3, bankingTypes.getBankingTypeID());
 
-            return stmt.executeUpdate() != 0;
+            stmt.executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return false;
     }
 
     @Override
-    public boolean deleteByID(int id) {
-        return false;
-    }
+    public void deleteByID(int id) {}
 }

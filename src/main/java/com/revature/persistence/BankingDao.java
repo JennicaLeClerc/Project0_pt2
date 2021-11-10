@@ -84,7 +84,7 @@ public class BankingDao implements Dao<Banking>{
     }
 
     @Override
-    public boolean update(Banking banking) {
+    public void update(Banking banking) {
         String sql = "update banking set invoice_date=?, amount=?, banking_type_id=?, account_type_id=? where transaction_id=?";
         java.util.Date utilDate = new java.util.Date();
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
@@ -98,15 +98,12 @@ public class BankingDao implements Dao<Banking>{
             stmt.setInt(4, banking.getAccountTypeID());
             stmt.setInt(5, banking.getTransactionID());
 
-            return stmt.executeUpdate() != 0;
+            stmt.executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return false;
     }
 
     @Override
-    public boolean deleteByID(int id) {
-        return false;
-    }
+    public void deleteByID(int id) {}
 }

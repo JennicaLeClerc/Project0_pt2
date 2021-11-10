@@ -71,7 +71,7 @@ public class AccountTypesDao implements Dao<AccountTypes>{
     }
 
     @Override
-    public boolean update(AccountTypes accountTypes) {
+    public void update(AccountTypes accountTypes) {
         String sql = "update account_types set account_type_name=? where account_type_id=?";
 
         try(Connection connection = ConnectionSingleton.getInstance()){
@@ -80,15 +80,12 @@ public class AccountTypesDao implements Dao<AccountTypes>{
             stmt.setString(1, accountTypes.getAccountTypeName());
             stmt.setInt(3, accountTypes.getAccountTypeID());
 
-            return stmt.executeUpdate() != 0;
+            stmt.executeUpdate();
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
-        return false;
     }
 
     @Override
-    public boolean deleteByID(int id) {
-        return false;
-    }
+    public void deleteByID(int id) {}
 }

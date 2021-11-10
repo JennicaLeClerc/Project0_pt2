@@ -9,8 +9,8 @@ public interface Dao<T> {
     T getByID(int id);
 
     // update
-    boolean update(T t);
+    void update(T t);
 
     // delete
-    boolean deleteByID(int id);
+    void deleteByID(int id);
 }
