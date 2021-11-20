@@ -27,7 +27,7 @@ public class UserService {
      */
     public void createUser(){
         String[] names = Name();
-        String[] credentials = UsernameAndPasswordCreater();
+        String[] credentials = UsernameAndPasswordCreator();
         //int account_number = Account_Number();
         double[] balances = InitialBalances();
 
@@ -113,7 +113,7 @@ public class UserService {
     /**
      * Creates a Username and Password string
      */
-    public String[] UsernameAndPasswordCreater(){
+    public String[] UsernameAndPasswordCreator(){
         String username = UserName();
         String password = Password();
         return new String[]{username, password};

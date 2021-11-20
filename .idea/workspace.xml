@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b90b9a21-177b-4243-9e3d-58ed8fd34b47" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../TestingTesting/src/TestFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Project0.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../Project0.docx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/persistence/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/persistence/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/revature/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/revature/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/model/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/model/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/persistence/BankingDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/persistence/BankingDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/persistence/UserDao.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/persistence/UserDao.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/revature/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/revature/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../RevatureCollections" beforeDir="false" afterPath="$PROJECT_DIR$/../RevatureCollections" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,6 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
