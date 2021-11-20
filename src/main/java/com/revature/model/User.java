@@ -22,6 +22,13 @@ public class User implements Serializable {
         this.password = password;
     }
 
+    public User(String username, String password, double checkingBalance, double savingsBalance){
+        this.username = username;
+        this.password = password;
+        this.checkingBalance = checkingBalance;
+        this.savingsBalance = savingsBalance;
+    }
+
     public User(int accountNo, String username, String password, double checkingBalance, double savingsBalance){
         this.accountNo = accountNo;
         this.username = username;

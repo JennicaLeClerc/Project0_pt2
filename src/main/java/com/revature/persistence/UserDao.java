@@ -11,16 +11,15 @@ public class UserDao implements Dao<User>{
 
     @Override
     public void create(User user) {
-        String sql = "insert into users(account_no, username, password, checking_balance, savings_balance) values(?,?,?,?,?)";
+        String sql = "insert into users(username, password, checking_balance, savings_balance) values(?,?,?,?)";
 
         try(Connection connection = ConnectionSingleton.getInstance()){
             assert connection != null;
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, user.getAccountNo());
-            stmt.setString(2, user.getUsername());
-            stmt.setString(3, user.getPassword());
-            stmt.setDouble(4, user.getCheckingBalance());
-            stmt.setDouble(5, user.getSavingsBalance());
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getPassword());
+            stmt.setDouble(3, user.getCheckingBalance());
+            stmt.setDouble(4, user.getSavingsBalance());
 
             stmt.executeUpdate();
         }catch (Exception e){
@@ -116,6 +115,24 @@ public class UserDao implements Dao<User>{
             System.out.println(e.getMessage());
         }
         return user;
+    }
+
+    public int getAccountNo(String username){
+        String sql = "select * from users where username=?";
+        try(Connection connection = ConnectionSingleton.getInstance()){
+            assert connection != null;
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, username);
+
+            ResultSet rs = stmt.executeQuery();
+
+            if(rs.next()){
+                return rs.getInt(1);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return 0;
     }
 
     @Override

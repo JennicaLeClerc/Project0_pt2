@@ -22,23 +22,25 @@ public class UserService {
         this.bankingDao = new BankingDao();
     }
 
-    private static int current_account_num = 1110;
-
     /**
      * Creates a user with First Name, Last Name, Username, Password, Account No., Checking Balance, Savings Balance.
      */
     public void createUser(){
         String[] names = Name();
         String[] credentials = UsernameAndPasswordCreater();
-        int account_number = Account_Number();
+        //int account_number = Account_Number();
         double[] balances = InitialBalances();
 
         currentPerson = new Person(names[0], names[1]);
-        currentUser = new User(account_number, credentials[0], credentials[1], balances[0], balances[1]);
+        currentUser = new User(credentials[0], credentials[1], balances[0], balances[1]);
 
-        currentPerson.setAccountNo(currentUser.getAccountNo());
+        //currentPerson.setAccountNo(currentUser.getAccountNo());
 
         userDao.create(currentUser); // This has to be created first to be able to link the person table to it.
+
+        Account_Number();
+        currentPerson.setAccountNo(currentUser.getAccountNo());
+
         personDao.create(currentPerson);
 
         menuService.accountCreatedPrint();
@@ -103,10 +105,9 @@ public class UserService {
     /**
      * Gives the new user the next Account Number, then returns the Account Number.
      */
-    public int Account_Number(){
-        current_account_num++;
-        menuService.printAccountNumber(current_account_num);
-        return current_account_num;
+    public void Account_Number(){
+        currentUser.setAccountNo(userDao.getAccountNo(currentUser.getUsername()));
+        menuService.printAccountNumber(currentUser.getAccountNo());
     }
 
     /**
